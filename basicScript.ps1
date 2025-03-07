@@ -20,4 +20,4 @@ else
 manage-bde C: -off
 
 #Final shutdown to mark script completion.
-#shutdown /s /t 60
+shutdown /s /t 0
