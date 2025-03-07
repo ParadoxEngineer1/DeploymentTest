@@ -16,5 +16,8 @@ else
 	Rename-Computer -New Name ("D" + $serialTag + "-L")
 }
 
+#Turn off BitLocker
+manage-bde C: -off
+
 #Final shutdown to mark script completion.
 shutdown /s /t 60
