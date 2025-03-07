@@ -5,19 +5,19 @@
 #company or parameters. Then to ask for company and call further scripts.
 
 #Rename Workstation - Broken
-#$serialTag = (Get-WmiObject -class win32_bios).SerialNumber
+$serialTag = (Get-WmiObject -class win32_bios).SerialNumber
 
-#if (((Get-Computerinfo).CsPCSystemType) -eq "Desktop")
-#{
-#	Rename-Computer -NewName ("D" + $serialTag + "-D")
-#}
-#else
-#{
-#	Rename-Computer -New Name ("D" + $serialTag + "-L")
-#}
+if (((Get-Computerinfo).CsPCSystemType) -eq "Desktop")
+{
+	Rename-Computer -NewName ("D" + $serialTag + "-D")
+}
+else
+{
+	Rename-Computer -New Name ("D" + $serialTag + "-L")
+}
 
 #Turn off BitLocker
-#manage-bde C: -off
+manage-bde C: -off
 
 #Final shutdown to mark script completion.
 shutdown /s /t 0
