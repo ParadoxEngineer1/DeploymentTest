@@ -21,7 +21,7 @@ function set-WorkstationName {
 
 #Turn off BitLocker
 function set-BitLocker {
-	if ((Get-Service -Name "BFE).Status -eq "Running") {
+	if ((Get-Service -Name "BFE").Status -eq "Running") {
  		manage-bde C: -off
 	}
 }
