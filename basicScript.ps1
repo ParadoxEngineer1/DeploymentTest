@@ -1,5 +1,5 @@
 #basicScript.ps1
-#v0.2 - 3/11/2025
+#v0.2.1 - 3/11/2025
 #Created by Jonathan Edwards
 #Purpose is to collect and run basic scripts that should be run on all workstation inedependent of 
 #company or parameters. Then to ask for company and call further scripts.
@@ -11,19 +11,19 @@ Set-Content -Path "C:\ProvisioningTest.txt" -Value "Hello World"
 function set-WorkstationName {
 	$serialTag = (Get-WmiObject -class win32_bios).SerialNumber
 
-	if (((Get-Computerinfo).CsPCSystemType) -eq "Desktop")
-	{
+	if (((Get-Computerinfo).CsPCSystemType) -eq "Desktop") {
 		Rename-Computer -NewName ("D" + $serialTag + "-D")
 	}
-	else
-	{
+	else {
 		Rename-Computer -New Name ("D" + $serialTag + "-L")
 	}
 }
 
 #Turn off BitLocker
 function set-BitLocker {
-	manage-bde C: -off
+	if ((Get-Service -Name "BFE).Status -eq "Running") {
+ 		manage-bde C: -off
+	}
 }
 
 #Power settings
