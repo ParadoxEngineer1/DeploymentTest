@@ -1,5 +1,5 @@
 #basicScript.ps1
-#v0.2.5 - 3/11/2025
+#v0.2.6 - 3/11/2025
 #Created by Jonathan Edwards
 #Purpose is to collect and run basic scripts that should be run on all workstation inedependent of 
 #company or parameters. Then to ask for company and call further scripts.
@@ -50,4 +50,4 @@ set-BitLocker | Out-file -FilePath `"C:\Deployment\DeploymentLog2.txt`"
 set-PowerOptions | Out-file -FilePath `"C:\Deployment\DeploymentLog3.txt`"
 
 #Final shutdown to mark script completion.
-shutdown /s /t 0"
+#shutdown /s /t 0"
