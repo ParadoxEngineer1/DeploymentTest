@@ -1,5 +1,5 @@
 #basicScript.ps1
-#v0.2.6 - 3/11/2025
+#v0.2.7 - 3/11/2025
 #Created by Jonathan Edwards
 #Purpose is to collect and run basic scripts that should be run on all workstation inedependent of 
 #company or parameters. Then to ask for company and call further scripts.
@@ -7,17 +7,6 @@
 #Log file for testing
 Set-Content -Path "C:\Users\VTech\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Deployment.bat" -Value "PowerShell.exe -ExecutionPolicy Unrestricted -File `"C:\Users\VTech\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Deployment.ps1`""
 Set-Content -Path "C:\Users\VTech\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Deployment.ps1" -Value "
-#Rename Workstation
-function set-WorkstationName {
-	`$serialTag = (Get-WmiObject -class win32_bios).SerialNumber
-
-	if (((Get-Computerinfo).CsPCSystemType) -eq `"Desktop`") {
-		Rename-Computer -NewName (`"D`" + `$serialTag + `"-D`")
-	}
-	else {
-		Rename-Computer -New Name (`"D`" + `$serialTag + `"-L`")
-	}
-}
 
 #Turn off BitLocker
 function set-BitLocker {
@@ -45,7 +34,7 @@ function set-PowerOptions {
 New-Item -Path `"C:\`" -Name `"Deployment`" -ItemType `"directory`"
 
 #Run Functions
-set-WorkstationName | Out-file -FilePath `"C:\Deployment\DeploymentLog1.txt`"
+#set-WorkstationName | Out-file -FilePath `"C:\Deployment\DeploymentLog1.txt`"
 set-BitLocker | Out-file -FilePath `"C:\Deployment\DeploymentLog2.txt`"
 set-PowerOptions | Out-file -FilePath `"C:\Deployment\DeploymentLog3.txt`"
 
