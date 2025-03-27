@@ -1,5 +1,5 @@
 #StartUpScript.ps1
-#v0.1.3 - 3/17/2025
+#v0.1.4 - 3/17/2025
 #Created by Jonathan Edwards
 #File to be loaded into non-login startup
 #Checks existing logs, runs next script, cleans up and shutsdown
@@ -29,9 +29,7 @@ if (!(Test-Path -Path $LogFolder)) {
 	Set-Content -Path "C:\Deployment\Status.txt" -Value "0"
 	
 	#Check which company needs to be use from user
-	#Download script from GitHub & post in login startup for local VTech user
-	Invoke-WebRequest -Uri https://raw.githubusercontent.com/ParadoxEngineer1/DeploymentTest/refs/heads/main/LoginScript.ps1 -OutFile "C:\Users\VTech\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\LoginScript.ps1"
-	
+
 	#User can now login to activate Login Startup script
 } else {
 	#doWhile reboot is not needed
