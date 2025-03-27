@@ -1,5 +1,5 @@
 #StartUpScript.ps1
-#v0.1.2 - 3/17/2025
+#v0.1.3 - 3/17/2025
 #Created by Jonathan Edwards
 #File to be loaded into non-login startup
 #Checks existing logs, runs next script, cleans up and shutsdown
@@ -50,7 +50,7 @@ if (!(Test-Path -Path $LogFolder)) {
 		#Load ScriptsRun
 		$ScriptsRun = [Int](Get-Content -Path "C:\Deployment\ScriptLog.txt")[0]
 	
-		Run-Script | Out-file -FilePath ("C:\Deployment\ScriptLog" + $ScriptsRun + ".txt")
+		Run-Script | Out-file -FilePath ("C:\Deployment\ScriptLog\" + $ScriptsRun + ".txt")
 		
 		#TODO:Update ScriptsRun
 		$ScriptsRun++
