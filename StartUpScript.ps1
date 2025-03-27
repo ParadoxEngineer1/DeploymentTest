@@ -23,7 +23,7 @@ if (!(Test-Path -Path $LogFolder)) {
 	#Create log and scripts
 	New-Item -Path "C:\" -Name "Deployment" -ItemType "directory"
 	New-Item -Path "C:\Deployment" -Name "Scripts" -ItemType "directory"
- 	New-Item -Path "C:\Deployement" -Name "ScriptLog" -ItemType "directory"
+ 	New-Item -Path "C:\Deployment" -Name "ScriptLog" -ItemType "directory"
 	
 	#Create status file with "0" for no scripts run
 	Set-Content -Path "C:\Deployment\Status.txt" -Value "0"
