@@ -10,8 +10,11 @@ $Company = "n\a"
 $needsReboot = $false
 
 function Run-Script {
-	& ("C:\Deployment\Scripts\" + $ScriptsRun + ".ps1")
-	
+	#TEST
+ 	Set-Content -Path "C:\Deployment\RunScriptAttempt.txt" -Value ("We tried to run: " + $ScriptsRun + ".ps1")
+ 
+ 	& ("C:\Deployment\Scripts\" + $ScriptsRun + ".ps1") | Out-file -FilePath ("C:\Deployment\ScriptLog\" + $ScriptsRun + ".txt")
+ 
 	#Check for reboot
 }
 
@@ -20,6 +23,7 @@ if (!(Test-Path -Path $LogFolder)) {
 	#Create log and scripts
 	New-Item -Path "C:\" -Name "Deployment" -ItemType "directory"
 	New-Item -Path $LogFolder -Name "Scripts" -ItemType "directory"
+ 	New-Item -Path "C:\Deployement\ScriptLog" -ItemType "directory"
 	
 	#Create status file with "0" for no scripts run
 	Set-Content -Path "C:\Deployment\Status.txt" -Value "0"
