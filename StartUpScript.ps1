@@ -1,5 +1,5 @@
 #StartUpScript.ps1
-#v0.1.4 - 3/17/2025
+#v0.1.5 - 3/17/2025
 #Created by Jonathan Edwards
 #File to be loaded into non-login startup
 #Checks existing logs, runs next script, cleans up and shutsdown
@@ -10,13 +10,9 @@ $Company = "n\a"
 $needsReboot = $false
 
 function Run-Script {
-	#Read log
+	& ("C:\Deployment\Scripts\" + $ScriptsRun + ".ps1")
 	
-	#Load $ScriptsRun and $Company
-	
-	#Load next script and check for reboot
-	
-	#Run script
+	#Check for reboot
 }
 
 #Check if Log folder exists
@@ -35,18 +31,21 @@ if (!(Test-Path -Path $LogFolder)) {
 	#doWhile reboot is not needed
 	DO {
 		$TotalScripts = (Get-ChildItem C:\Deployment\Scripts | Measure-Object).Count
-		
+
+		#Load ScriptsRun
+		$ScriptsRun = [Int](Get-Content -Path "C:\Deployment\ScriptLog.txt")[0]
+  
 		#Check if all scripts have run
 		if ($ScriptsRun -ge $TotalScripts) {
-			#Delete Deployement files
+			#While testing Exit Loop
+   			exit 0
+      			
+   			#Delete Deployement files
 			#Remove-Item -Recurse -Force C:\Deployment
 		
 			#Final Shutdown Command
 			#shutdown /s /t 0
 		}
-		
-		#Load ScriptsRun
-		$ScriptsRun = [Int](Get-Content -Path "C:\Deployment\ScriptLog.txt")[0]
 	
 		Run-Script | Out-file -FilePath ("C:\Deployment\ScriptLog\" + $ScriptsRun + ".txt")
 		
