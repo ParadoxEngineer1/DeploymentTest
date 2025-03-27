@@ -1,5 +1,5 @@
 #StartUpScript.ps1
-#v0.1.4 - 3/27/2025
+#v0.1.5 - 3/27/2025
 #Created by Jonathan Edwards
 #Creates Scheduled Task that run on system startup.
 
@@ -14,7 +14,7 @@ Register-ScheduledTask Deployment -InputObject $task
 #Create Login Schedule Task
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File `"C:\LoginScript.ps1`""
 $trigger = New-ScheduledTaskTrigger -AtLogon
-$principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
+$principal = New-ScheduledTaskPrincipal -UserID "$env:UserName" -LogonType Interactive -RunLevel Highest
 $settings = New-ScheduledTaskSettingsSet
 $task = New-ScheduledTask -Action $action -Principal $principal -Trigger $trigger -Settings $settings
 Register-ScheduledTask DeploymentLogin -InputObject $task
