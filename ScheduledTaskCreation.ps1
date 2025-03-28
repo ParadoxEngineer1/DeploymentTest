@@ -1,5 +1,5 @@
 #StartUpScript.ps1
-#v0.1.5 - 3/27/2025
+#v0.1.6 - 3/27/2025
 #Created by Jonathan Edwards
 #Creates Scheduled Task that run on system startup.
 
@@ -24,6 +24,9 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/ParadoxEngineer1/Deploy
 
 #Download LoginScript.ps1
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/ParadoxEngineer1/DeploymentTest/refs/heads/main/LoginScript.ps1 -OutFile "C:\LoginScript.ps1"
+
+#Wait for files to download
+Start-Sleep -Seconds 5
 
 #Run StartUpScript.ps1
 & "C:\StartUpScript.ps1"
