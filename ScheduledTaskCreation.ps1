@@ -1,7 +1,7 @@
 #StartUpScript.ps1
-#v0.1.6 - 3/27/2025
+#v0.1.7 - 3/28/2025
 #Created by Jonathan Edwards
-#Creates Scheduled Task that run on system startup.
+#Creates Scheduled Task that run on system startup. This file is run by the ppkg file.
 
 #Create Deployment Scheduled Task
 $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File `"C:\StartUpScript.ps1`""
@@ -28,5 +28,5 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/ParadoxEngineer1/Deploy
 #Wait for files to download
 Start-Sleep -Seconds 5
 
-#Run StartUpScript.ps1
-& "C:\StartUpScript.ps1"
+#Reboot
+shutdown /f /s /r /t 10
