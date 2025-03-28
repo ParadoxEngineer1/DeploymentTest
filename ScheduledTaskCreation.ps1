@@ -20,13 +20,13 @@ $task = New-ScheduledTask -Action $action -Principal $principal -Trigger $trigge
 Register-ScheduledTask DeploymentLogin -InputObject $task
 
 #Download StartUpScript.ps1
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/ParadoxEngineer1/DeploymentTest/refs/heads/main/StartUpScript.ps1 -OutFile "C:\StartUpScript.ps1"
+#Invoke-WebRequest -Uri https://raw.githubusercontent.com/ParadoxEngineer1/DeploymentTest/refs/heads/main/StartUpScript.ps1 -OutFile "C:\StartUpScript.ps1"
 
 #Download LoginScript.ps1
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/ParadoxEngineer1/DeploymentTest/refs/heads/main/LoginScript.ps1 -OutFile "C:\LoginScript.ps1"
+#Invoke-WebRequest -Uri https://raw.githubusercontent.com/ParadoxEngineer1/DeploymentTest/refs/heads/main/LoginScript.ps1 -OutFile "C:\LoginScript.ps1"
 
 #Wait for files to download
-Start-Sleep -Seconds 5
+#Start-Sleep -Seconds 5
 
 #Reboot
-shutdown /f /s /r /t 10
+#shutdown /f /s /r /t 10
